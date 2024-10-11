@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --rad0: #12a3fd;
+  --rad0-glow: #76f5fe;
+  --rad1: red;
+  --rad1-glow: #FF474C;
+  --rad2: yellow;
+  --rad2-glow: #fdd735;
+  --rad3: green;
+  --rad3-glow: #59fd35;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/*
+@keyframes big-blink {
+  0% { background: radial-gradient(circle at 20px 20px, #12a3fd, #000); }
+  50% { background: radial-gradient(circle at 20px 20px, #fff, #76f5fe); }
+  100% { background: radial-gradient(circle at 20px 20px, #12a3fd, #000); }
+}
+*/
+@keyframes red-blink {
+  0% { background: radial-gradient( circle at 5px 5px, red, #000); }
+  50% { background:  radial-gradient( circle at 5px 5px, #fff, #FF474C); }
+  100% { background: radial-gradient( circle at 5px 5px, red, #000); }
+}
+
+@keyframes yellow-blink {
+  0% { background: radial-gradient( circle at 5px 5px, yellow, #000); }
+  50% { background:  radial-gradient( circle at 5px 5px, #fff, #fdd735); }
+  100% { background: radial-gradient( circle at 5px 5px, yellow, #000); }
+}
+
+@keyframes green-blink {
+  0% { background: radial-gradient( circle at 5px 5px, green, #000); }
+  50% { background:  radial-gradient( circle at 5px 5px, #fff, #59fd35); }
+  100% { background: radial-gradient( circle at 5px 5px, green, #000); }
+}
+
+/*
+#big-light {
+  animation-name: big-blink;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  background:  radial-gradient( circle at 20px 20px, #12a3fd, #000);
+}
+*/
+#red-light {
+  animation-name: red-blink;
+  animation-duration: 1s;
+  animation-delay: 3.5s;
+  animation-timing-function: ease-in;
+  background:  radial-gradient( circle at 5px 5px, red, #000);
+}
+
+#yellow-light {
+  animation-name: yellow-blink;
+  animation-duration: 1s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in;
+  background:  radial-gradient( circle at 5px 5px, #fafa33, #000);
+}
+
+#green-light {
+  animation-name: green-blink;
+  animation-duration: 1s;
+  animation-delay: 4.5s;
+  animation-timing-function: ease-in;
+  background:  radial-gradient( circle at 5px 5px, green, #000);
+}
+
+
+/*
+.head-stroke {
+  -webkit-text-stroke-color: #0075BE;
+}
+
+.radial-grad {
+  background:  radial-gradient(circle at 20px 20px, #12a3fd, #000);
+}
+
+.radial-grad-glow {
+  background: radial-gradient(circle at 20px 20px, #76f5fe, #000);
+}
+
+.radial-grad-1 {
+  background:  radial-gradient( circle at 5px 5px, red, #000);
+}
+
+.radial-grad-2 {
+  background:  radial-gradient( circle at 5px 5px, #fafa33, #000);
+}
+
+.radial-grad-3 {
+  background:  radial-gradient( circle at 5px 5px, green, #000);
+}
+*/
+
+.swivel {
+  background: linear-gradient(90deg, #dc2626, #ff7f7f 40%, #dc2626 80%);
+}
+
+.radial-grad-4 {
+  background:  radial-gradient( circle at 8px 8px, #fafa33, #000);
+}
+
+
+
+.triangle {
+  width: 36.75px;
+  aspect-ratio: 1;
+  clip-path: polygon(0 0,100% 0,100% 100%);
+}
