@@ -52,7 +52,7 @@ export default function pokebody() {
           </table>
         </div>
         <div className="relative left-[210px] top-2 h-[7px] w-[55px] bg-black rounded shadow-[rgba(0,0,10,0.75)_1px_1px_2px_0px]"></div>
-        <div className="relative left-[270px] top-[2.25px] h-[6.75px] w-[55px] bg-black rounded shadow-[rgba(0,0,10,0.75)_1px_1px_2px_0px]"></div>
+        <div className="relative left-[270px] top-[3.25px] h-[6.75px] w-[55px] bg-black rounded shadow-[rgba(0,0,10,0.75)_1px_1px_2px_0px]"></div>
         <div className="relative top-3 left-7 h-[55px] w-[120px] bg-white border border-black rounded shadow-[rgba(0,0,10,0.75)_1px_1px_2px_0px]">
           <table>
             <thead>
@@ -63,9 +63,9 @@ export default function pokebody() {
             </thead>
           </table>
         </div>
-        <div className="relative top-[-20px] left-[290px] h-[35px] w-[30px] rounded-full radial-grad-4 border border-black border-opacity-75"></div>
+        <div className="relative top-[-20px] left-[290px] h-[42px] w-[30px] radial-grad-4 border border-black border-opacity-75 rounded-full"></div>
         <div className="relative top-[10px] left-[30px] h-[50px] w-[135px] bg-black border border-black rounded shadow-[rgba(0,0,10,0.75)_1px_1px_2px_0px]"></div>
-        <div className="relative top-[-32px] left-[190px] h-[50px] w-[135px] bg-black border border-black rounded shadow-[rgba(0,0,10,0.75)_1px_1px_2px_0px]"></div>
+        <div className="relative top-[-25px] left-[190px] h-[50px] w-[135px] bg-black border border-black rounded shadow-[rgba(0,0,10,0.75)_1px_1px_2px_0px]"></div>
       </div>
     </div>
   )
