@@ -1,16 +1,24 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
+import { usePokemon } from '@/context/pokeContext';
 
-interface OnProps {
-  onClick: () => void;
-  onChange: () => void;
-}
+export default function header() {
+  const [input, setInput] = useState("");
+  const { pokeSearch } = usePokemon();
 
+  function inputChange() {
+    setInput((document.getElementById("search-input") as HTMLInputElement).value);
+  }
 
-export default function header({ onClick, onChange }: OnProps) {
-  
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input.trim()) {
+      pokeSearch(input.trim());
+    }
+  };
+
   return (
     <header id="head" className="flex flex-col items-center">
       <motion.h1 
@@ -33,19 +41,22 @@ export default function header({ onClick, onChange }: OnProps) {
         Pokédex
       </motion.h1>
       <div id="input-name">
-        <input id="search-input" 
-        placeholder="Enter name or id" 
-        onChange={onChange}
-        className="rounded-full border border-opacity-40 bg-gray-600 text-center hover:bg-slate-500 transition"
-        required>
-        </input>
-        <button 
-        id="search-button" 
-        onClick={onClick}
-        className="ml-3 transition hover:text-[#FFCC00] hover:scale-110 bg-gray-600 rounded-full px-2"
-        >
-          <strong>Search</strong>
-        </button>
+        <form onSubmit={handleSearch}>
+          <input id="search-input" 
+          placeholder="Enter name or id"
+          value={input}
+          onChange={inputChange}
+          className="w-60 resize-x rounded-full border border-opacity-40 bg-gray-600 text-center hover:bg-slate-500 transition"
+          required>
+          </input>
+          <button 
+          id="search-button"
+          type="submit"
+          className="ml-3 transition hover:text-[#FFCC00] hover:scale-110 bg-gray-600 rounded-full px-2"
+          >
+            <strong>Search</strong>
+          </button>
+        </form>
       </div>
       
     </header>

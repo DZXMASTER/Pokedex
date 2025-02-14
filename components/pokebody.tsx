@@ -3,8 +3,11 @@ import Lights from "@/components/lights";
 import Display from "@/components/display";
 import Types from "@/components/types";
 import Stats from "@/components/stats";
+import { usePokemon } from '@/context/pokeContext';
 
 export default function pokebody() {
+  const { ePokeName, ePokeId, ePokeWeight, ePokeHeight, ePokeSprite, ePokeType1, ePokeType2, ePokeHp, ePokeAttack, ePokeDefense, ePokeSpAtk, ePokeSpDef, ePokeSpeed, closestMatches, pokeSearch } = usePokemon();
+
   return (
     <div id="entire" className="flex flex-wrap mt-10 justify-center">
       <div id="left-side" className="flex flex-col bg-red-600 w-[400px] h-[500px] rounded-md">
@@ -13,8 +16,8 @@ export default function pokebody() {
         <div id="line2" className="relative top-[-20px] left-[200px] -rotate-45 h-[2px] w-[51px] bg-black border border-black"></div>
         <div id="line3" className="relative top-[-40px] left-[243px] h-[2px] w-[157px] bg-black border border-black"></div>
         <div className="flex flex-col">
-          <Display />
-          <Types />
+          <Display ePokeName={ePokeName} ePokeId={ePokeId} ePokeWeight={ePokeWeight} ePokeHeight={ePokeHeight} ePokeSprite={ePokeSprite} closestMatches={closestMatches || []} pokeSearch={pokeSearch} />
+          <Types ePokeType1={ePokeType1} ePokeType2={ePokeType2} />
           <div id="mid-axis" className="relative left-[356px] bottom-[385px] h-[429px] w-[44px] swivel border-x border-black border-opacity-20 max-[853px]:rounded-br-md">
             <div className="mt-[40px] w-[43px] h-[2px] bg-black"></div>
             <div className="mt-[345px] w-[43px] h-[2px] bg-black"></div>
@@ -27,7 +30,7 @@ export default function pokebody() {
           <div className="ml-[149.75px] mt-[-36.75px] h-[36.75px] w-[206.25px] bg-black"></div>
         </div>
         <div className="mt-[30px] mx-auto h-[100px] w-[300px] bg-black rounded-md border border-black shadow-[rgba(0,0,10,0.75)_2px_2px_2px_0px]">
-          <Stats />
+          <Stats ePokeHp={ePokeHp} ePokeAttack={ePokeAttack} ePokeDefense={ePokeDefense} ePokeSpAtk={ePokeSpAtk} ePokeSpDef={ePokeSpDef} ePokeSpeed={ePokeSpeed}/>
         </div>
         <div className="mt-[20px] mx-auto h-[90px] w-[300px] bg-[#3e8ede] rounded border border-black shadow-[rgba(0,0,10,0.75)_2px_2px_2px_0px]">
           <table>
@@ -70,7 +73,3 @@ export default function pokebody() {
     </div>
   )
 }
-
-//Fix transition between the 3 black lines & Right-side triangle
-
-//See if the table cells can be iterated to reduce lines
