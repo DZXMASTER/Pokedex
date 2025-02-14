@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Pokédex Recreation
+About the Project
+Pokédex Recreation is a fan-made web application that allows users to:
 
-## Getting Started
+Search for Pokémon using their name or Pokédex ID.
+View detailed information including name, ID, weight, height, and sprite.
+Handle different Pokémon forms, ensuring accurate search results.
+Implement intelligent search, finding the closest matching Pokémon even if the name isn't exact.
+Current Status
+This project is currently in active development.
 
-First, run the development server:
+Tech Stack
+Frontend:
+React.js (with Next.js)
+Tailwind CSS
+TypeScript
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Backend & Data Fetching:
+PokéAPI (for Pokémon data)
+Context API (for state management)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deployment:
+Vercel (for free-tier hosting)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Features
+✅ Planned Features:
+Pokémon Search:
+Flexible Name Matching: Searches for the closest Pokémon name if an exact match is unavailable.
+Supports Alternate Forms: Finds and displays different Pokémon forms (e.g., Mimikyu’s forms).
+Search by ID: Users can enter a Pokédex ID instead of a name.
+Pokémon Display:
+Shows sprite, name, ID, weight, and height.
+Labels are always correctly positioned above their respective data.
+Dynamically adjusts the display layout for optimal readability.
 
-## Learn More
+UI Enhancements:
+Clean, intuitive Pokédex-inspired UI.
+Responsive design for desktop and mobile devices.
 
-To learn more about Next.js, take a look at the following resources:
+Future Enhancements:
+Favorites List: Allow users to save Pokémon for quick access.
+Pokédex Completion Tracker: Gamify the experience by tracking found Pokémon.
+Sound Effects & Animations: Add immersion to the search experience.
+Roadmap
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Phase 1: Core Features
+✅ Implement search functionality with exact name and ID matching.
+✅ Display basic Pokémon data (name, ID, sprite, weight, height).
+✅ Ensure correct label positioning for data fields.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Phase 2: Intelligent Search & Alternate Forms
+🔄 Fetch all Pokémon names for fuzzy search when exact matches fail.
+🔄 Implement alternate form handling (e.g., Mega, Regional, Dynamax, etc.).
 
-## Deploy on Vercel
+Phase 3: UI/UX Enhancements
+🎨 Improve the Pokédex-style interface.
+📱 Make the layout fully responsive.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Phase 4: Advanced Features
+⭐ Add a favorites list.
+📊 Implement a completion tracker.
+🔊 Introduce sound effects
