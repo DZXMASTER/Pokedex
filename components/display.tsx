@@ -57,7 +57,7 @@ export default function display({
                 </div>
               </div>
               )}
-              {ePokeSprite && <Image id="sprite" src={ePokeSprite} alt="Pokemon sprite" className="m-auto"/>}
+              {ePokeSprite && <Image id="sprite" src={ePokeSprite} alt="Pokemon sprite" width={96} height={96} className="m-auto"/>}
             </div>
           </>
         )}
