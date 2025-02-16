@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface DisplayProps {
   ePokeName: string;
@@ -56,7 +57,7 @@ export default function display({
                 </div>
               </div>
               )}
-              {ePokeSprite && <img id="sprite" src={ePokeSprite} className="m-auto"/>}
+              {ePokeSprite && <Image id="sprite" src={ePokeSprite} alt="Pokemon sprite" className="m-auto"/>}
             </div>
           </>
         )}

@@ -5,7 +5,7 @@ import Types from "@/components/types";
 import Stats from "@/components/stats";
 import { usePokemon } from '@/context/pokeContext';
 
-export default function pokebody() {
+export default function Pokebody() {
   const { ePokeName, ePokeId, ePokeWeight, ePokeHeight, ePokeSprite, ePokeType1, ePokeType2, ePokeHp, ePokeAttack, ePokeDefense, ePokeSpAtk, ePokeSpDef, ePokeSpeed, closestMatches, pokeSearch } = usePokemon();
 
   return (

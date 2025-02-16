@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { usePokemon } from '@/context/pokeContext';
 
-export default function header() {
+export default function Header() {
   const [input, setInput] = useState("");
   const { pokeSearch } = usePokemon();
 
