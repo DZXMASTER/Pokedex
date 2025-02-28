@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { findClosestMatches, findRelatedForms, fetchAllPokemonNames } from "@/utils/stringUtils";
+import { findClosestMatches, findRelatedForms, fetchAllPokemonNames, findPreEvolution } from "@/utils/stringUtils";
 
 interface PokemonContextType {
     eBlackScreen: string;
@@ -44,6 +44,7 @@ export const PokemonProvider = ({ children }: { children: ReactNode }) => {
     const [ePokeSpeedHub, setEPokeSpeedHub] = useState("");
     const [ePokeSpeed, setEPokeSpeed] = useState("");
     const [closestMatches, setClosestMatches] = useState<string[]>([]);
+    const [pokemonEntry, setPokemonEntry] = useState("");
 
     useEffect(() => {
         const blackScreen = (document.getElementById("black-screen") as HTMLDivElement);
@@ -87,6 +88,35 @@ export const PokemonProvider = ({ children }: { children: ReactNode }) => {
         //const pokeSpeed = (document.getElementById("speed") as HTMLElement);
         //pokeSpeed.textContent = ePokeSpeed;
     }, [eBlackScreen, ePokeName]);
+
+    const speakPokemonEntry = (name: string, category: string, preEvolution: string | null, entry: string) => {
+      if (!window.speechSynthesis) {
+        console.warn("Web Speech API not supported in this browser.");
+        return;
+      }
+
+      const synth = window.speechSynthesis;
+      const voices = synth.getVoices();
+
+      voices.forEach((voice) => {
+        if (voice.lang === 'en-US') {
+          console.log(voice.name); // For US English voices
+        }
+      });
+
+      let speechText = `${name}, the ${category}. ${entry}`;
+
+      if (preEvolution) {
+        speechText = `${name}, the ${category}, and the evolved form of ${preEvolution}. ${entry}`;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(speechText);
+      utterance.voice = window.speechSynthesis.getVoices().find((voice) => voice.name === "Google UK English Male") || null;
+      utterance.lang = "en-US";
+      utterance.pitch = 1;
+      utterance.rate = 1;
+      window.speechSynthesis.speak(utterance);
+    };
     
     const pokeSearch = async (query: string, isUserSelection = false) => {
       if (!query) return;
@@ -118,6 +148,8 @@ export const PokemonProvider = ({ children }: { children: ReactNode }) => {
 
       setEPokeSpeedHub("hidden");
       setEPokeSpeed("");
+
+      setPokemonEntry("");
 
       if (!isUserSelection) {
         setClosestMatches([]); 
@@ -198,6 +230,36 @@ export const PokemonProvider = ({ children }: { children: ReactNode }) => {
         setEPokeSpeedHub("block");
         setEPokeSpeed(data.stats[5].base_stat);
 
+        // Fetch Pokédex entry
+        const speciesResponse = await fetch(data.species.url);
+        const speciesData = await speciesResponse.json();
+
+        // Get Pokémon category
+        const category = speciesData.genera.find((gen: any) => gen.language.name === "en")?.genus || "Pokémon";
+
+        // Get evolution chain
+        let preEvolution: string | null = null;
+        if (speciesData.evolution_chain?.url) {
+          const evolutionResponse = await fetch(speciesData.evolution_chain.url);
+          const evolutionData = await evolutionResponse.json();
+
+          preEvolution = findPreEvolution(data.name, evolutionData.chain);
+        }
+
+        // Randomly select an entry from available games
+        const entries = speciesData.flavor_text_entries
+          .filter((entry: any) => entry.language.name === "en")
+          .map((entry: any) => entry.flavor_text.replace(/\f|\n/g, " ")); // Remove formatting artifacts
+
+        if (entries.length > 0) {
+          const randomEntry = entries[Math.floor(Math.random() * entries.length)];
+          setPokemonEntry(randomEntry);
+
+          // Speak the entry if it's an exact match OR a selected Pokémon from a list
+          if (isUserSelection || closestMatches.length === 0) {
+            speakPokemonEntry(data.name, category, preEvolution, randomEntry);
+          }
+        }
       } catch (error) {
           console.log(`Exact match for '${modInput}' not found, searching closest matches...`, error);
 

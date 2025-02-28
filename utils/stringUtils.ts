@@ -65,3 +65,19 @@ export const findClosestMatches = (input: string, allNames: string[], maxResults
     .slice(0, maxResults)
     .map(entry => entry.name);
 };
+
+//Helper function to find the pre-evolution
+export const findPreEvolution = (pokemonName: string, chain: any): string | null => {
+  let current = chain;
+  let previous = null;
+
+  while (current) {
+    if (current.species.name === pokemonName.toLowerCase()) {
+      return previous;
+    }
+    previous = current.species.name;
+    current = current.evolves_to[0]; // Move to next evolution stage (if exists)
+  }
+
+  return null;
+};
